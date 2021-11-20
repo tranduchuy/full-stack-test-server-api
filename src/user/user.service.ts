@@ -30,4 +30,13 @@ export class UserService {
         });
     }
 
+    async getProfileInfo(token: string): Promise<User> {
+        const email = await this.firebaseService.validateToken(token);
+        if (email === null) {
+            throw new Error('Invalid token');
+        }
+
+        const user = await this.usersRepository.findOne({email});
+        return user;
+    }
 }

@@ -26,7 +26,6 @@ export class FireBaseService {
         try {
             return await admin.auth().getUserByEmail(email);
         } catch (e) {
-            console.log('------------');
             console.error(e);
             return null;
         }
@@ -48,4 +47,14 @@ export class FireBaseService {
         }
     }
 
+    async validateToken(token: string): Promise<string | null> {
+        try {
+            const decoded = await admin.auth().verifyIdToken(token);
+            console.log(decoded);
+            return decoded.email;
+        } catch (e) {
+            console.error(e);
+            return null;
+        }
+    }
 }

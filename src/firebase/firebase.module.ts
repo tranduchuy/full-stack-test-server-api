@@ -1,4 +1,8 @@
-import { Module } from '@nestjs/common';
+import {Module} from '@nestjs/common';
+import {FireBaseService} from './firebase.service';
 
-@Module({})
+@Module({
+    providers: [FireBaseService],
+    exports: [FireBaseService]
+})
 export class FirebaseModule {}

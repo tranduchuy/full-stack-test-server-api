@@ -57,4 +57,12 @@ export class FireBaseService {
             return null;
         }
     }
+
+    setRecord(collectionName: string, id: string, data: any) {
+        return this.firestore.collection(collectionName).doc(id).set(data);
+    }
+
+    deleteRecord(collectionName: string, id: string) {
+        return this.firestore?.collection(collectionName).doc(id).delete();
+    }
 }

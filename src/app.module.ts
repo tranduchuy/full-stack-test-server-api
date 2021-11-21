@@ -7,7 +7,6 @@ import {BlogModule} from './blog/blog.module';
 import {TypeOrmModule} from '@nestjs/typeorm';
 import {ConfigModule} from '@nestjs/config';
 
-
 @Module({
     imports: [
         ConfigModule.forRoot({

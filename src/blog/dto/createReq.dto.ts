@@ -1,7 +1,7 @@
 export class CreateReqDto {
-    title: string;
+  title: string;
 
-    imageSrc: string;
+  imageSrc: string;
 
-    content: string;
+  content: string;
 }

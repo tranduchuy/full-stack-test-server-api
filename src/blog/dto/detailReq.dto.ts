@@ -1,3 +1,3 @@
 export class DetailReqDto {
-    id: number;
+  id: number;
 }

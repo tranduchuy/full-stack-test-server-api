@@ -1,7 +1,7 @@
-import {CreateReqDto} from "./createReq.dto";
+import { CreateReqDto } from './createReq.dto';
 
 export class BlogResDto extends CreateReqDto {
-    id: number;
+  id: number;
 }
 
 export type BlogList = BlogResDto[];

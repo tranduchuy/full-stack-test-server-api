@@ -1,9 +1,9 @@
 export class SignUpReqDto {
-    email: string;
+  email: string;
 
-    password: string;
+  password: string;
 
-    birthday: string;
+  birthday: string;
 
-    name: string;
+  name: string;
 }

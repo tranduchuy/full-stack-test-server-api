@@ -1,19 +1,22 @@
-import {AfterInsert, AfterUpdate, Column, Entity, PrimaryGeneratedColumn} from "typeorm";
-
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity({
-    name: 'blog'
+  name: 'blog',
 })
 export class Blog {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    title: string;
+  @Column()
+  title: string;
 
-    @Column()
-    content: string;
+  @Column()
+  content: string;
 
-    @Column()
-    imageSrc: string;
+  @Column()
+  imageSrc: string;
 }

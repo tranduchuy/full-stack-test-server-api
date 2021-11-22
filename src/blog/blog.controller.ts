@@ -26,7 +26,7 @@ export class BlogController {
 
   @Get()
   @HttpCode(200)
-  list(): Promise<BlogList> {
+  list() {
     return this.blogService.list();
   }
 

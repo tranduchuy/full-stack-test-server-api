@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { FireBaseService } from 'src/firebase/firebase.service';
+import { FireBaseService } from '../firebase/firebase.service';
 import {
   Connection,
   EntitySubscriberInterface,

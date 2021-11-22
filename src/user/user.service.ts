@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { FireBaseService } from 'src/firebase/firebase.service';
+import { FireBaseService } from '../firebase/firebase.service';
 import { Repository } from 'typeorm';
 import { SignUpReqDto } from './dto/signUpReq.dto';
 import { User } from './user.entity';

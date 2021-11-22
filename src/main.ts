@@ -19,17 +19,22 @@ const binaryMimeTypes: string[] = [];
 let cachedServer: Server;
 
 async function bootstrapServer(): Promise<Server> {
- if (!cachedServer) {
+  if (!cachedServer) {
     const expressApp = express();
-    const nestApp = await NestFactory.create(AppModule, new ExpressAdapter(expressApp))
+    const nestApp = await NestFactory.create(AppModule, {
+      ...new ExpressAdapter(expressApp),
+      cors: {
+        origin: '*',
+      },
+    });
     nestApp.use(eventContext());
     await nestApp.init();
     cachedServer = createServer(expressApp, undefined, binaryMimeTypes);
- }
- return cachedServer;
+  }
+  return cachedServer;
 }
 
 export const handler: Handler = async (event: any, context: Context) => {
- cachedServer = await bootstrapServer();
- return proxy(cachedServer, event, context, 'PROMISE').promise;
-}
+  cachedServer = await bootstrapServer();
+  return proxy(cachedServer, event, context, 'PROMISE').promise;
+};

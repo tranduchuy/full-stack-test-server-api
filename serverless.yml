@@ -1,16 +1,29 @@
 service:
   name: ftt-api
 
+useDotenv: true
+
 plugins:
+  - 'serverless-plugin-typescript'
+  - serverless-plugin-optimize
   - serverless-offline
 
 provider:
   name: aws
   runtime: nodejs12.x
+  region: ap-southeast-1
+
+package:
+  patterns:
+    - '!node_modules/**'
+    # - '!src/**'
+    - '!test/**'
+    - '!.git/**'
 
 functions:
   main:
-    handler: dist/main.handler
+    handler: src/main.handler
+    role: lambdaRole
     events:
       - http:
           method: ANY
@@ -18,3 +31,23 @@ functions:
       - http:
           method: ANY
           path: '{proxy+}'
+    vpc:
+      securityGroupIds:
+        - sg-0e7ae8a3d19b4a4f0
+      subnetIds:
+        - subnet-005b9fbc445c5b8de
+        - subnet-04967fe7fdc3ffd14
+        - subnet-0f399a964b6c30398
+    environment:
+      DB_HOST: ${env:DB_HOST}
+      DB_USERNAME: ${env:DB_USERNAME}
+      DB_PASSWORD: ${env:DB_PASSWORD}
+      DB_NAME: ${env:DB_NAME}
+      FIREBASE_PROJECT_ID: ${env:FIREBASE_PROJECT_ID}
+      FIREBASE_CLIENT_EMAIL: ${env:FIREBASE_CLIENT_EMAIL}
+      FIREBASE_PRIVATE_KEY: ${env:FIREBASE_PRIVATE_KEY}
+      FIREBASE_API_KEY: ${env:FIREBASE_API_KEY}
+      FIRESTORE_DB: ${env:FIRESTORE_DB}
+
+resources:
+  - ${file(resources/iam.yml)}
